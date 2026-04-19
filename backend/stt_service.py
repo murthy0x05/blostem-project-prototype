@@ -435,7 +435,8 @@ def process_audio_sync(
 
     try:
         model = _get_model(selected_model)
-        if model_format == "hf-whisper":
+        if model_format in ("hf-whisper", "hf-whisper-adapter"):
+
             full_text, detected_language, all_segments, all_words = (
                 _transcribe_with_hf_whisper(
                     model,
