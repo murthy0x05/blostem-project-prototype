@@ -1,0 +1,19 @@
+# Virtual environment
+venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+
+# Models (downloaded automatically by faster-whisper)
+models/
+
+# Temp files
+*.tmp
+tmp_*
