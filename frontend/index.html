@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STT Console | Lumina</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Aurora Background Effect -->
+        <div class="aurora aurora-1"></div>
+        <div class="aurora aurora-2"></div>
+
+        <header class="glass-panel">
+            <div class="logo">
+                <i data-lucide="audio-lines" class="text-accent"></i>
+                <h1>Codeptor <span class="font-light">STT</span></h1>
+            </div>
+            <div class="status-indicator">
+                <div class="pulse-dot"></div>
+                <span>System Online</span>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div class="input-section glass-panel">
+                <div class="tabs">
+                    <button class="tab-btn active" data-tab="mic">
+                        <i data-lucide="mic"></i> Microphone
+                    </button>
+                    <button class="tab-btn" data-tab="text">
+                        <i data-lucide="file-text"></i> Text Input
+                    </button>
+                </div>
+
+                <div class="tab-content active" id="mic-tab">
+                    <div class="recording-container">
+                        <div class="visualizer" id="visualizer">
+                            <!-- Visualizer bars -->
+                            <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+                            <div class="bar"></div><div class="bar"></div>
+                        </div>
+                        <button id="record-btn" class="record-btn">
+                            <i data-lucide="mic" class="mic-icon"></i>
+                            <i data-lucide="square" class="stop-icon hidden"></i>
+                        </button>
+                        <p id="record-status" class="status-text">Ready to record</p>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="text-tab">
+                    <div class="text-input-container">
+                        <textarea id="text-input" placeholder="Type text to process..."></textarea>
+                        <button id="process-text-btn" class="btn-primary">
+                            <i data-lucide="zap"></i> Process Text
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="output-section glass-panel">
+                <div class="output-header">
+                    <h2><i data-lucide="code-2"></i> JSON Output</h2>
+                    <button id="copy-btn" class="icon-btn" title="Copy to clipboard">
+                        <i data-lucide="copy"></i>
+                    </button>
+                </div>
+                <div class="output-container">
+                    <div id="loader" class="loader-container hidden">
+                        <div class="spinner"></div>
+                        <p>Processing...</p>
+                    </div>
+                    <pre><code id="json-output">Waiting for input...</code></pre>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

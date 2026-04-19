@@ -33,7 +33,13 @@ async def lifespan(app: FastAPI):
     """Pre-load model on startup to avoid latency on first request."""
     logger.info("Starting STT backend...")
     try:
-        from backend.stt_service import _get_model, get_default_model_name
+        from backend.stt_service import (
+            _get_model,
+            get_default_model_name,
+            validate_startup_configuration,
+        )
+
+        validate_startup_configuration()
         _get_model(get_default_model_name())
     except Exception as exc:
         logger.warning(f"Could not pre-load model: {exc}")
