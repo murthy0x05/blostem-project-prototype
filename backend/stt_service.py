@@ -30,16 +30,9 @@ DEFAULT_ADAPTER_BASE_MODEL = os.getenv(
     "openai/whisper-large-v3-turbo",
 ).strip()
 
-SUPPORTED_MODEL_NAMES = (
-    "tiny",
-    "base",
-    "small",
-    "medium",
-    "large-v3",
-    "large-v3-turbo",
-)
+SUPPORTED_MODEL_NAMES = ()
 
-CUSTOM_MODEL_ALIAS = "custom"
+CUSTOM_MODEL_ALIAS = "telugu-whisper"
 CUSTOM_MODEL_PATH_ENV = "WHISPER_MODEL_PATH"
 _models: dict[str, object] = {}
 
@@ -73,29 +66,22 @@ def get_project_model_path() -> Optional[str]:
 
 
 def _get_default_model_name() -> str:
-    env_model = os.getenv("WHISPER_MODEL", "").strip()
-    if env_model:
-        return env_model
+    project_model_path = get_project_model_path()
+    if project_model_path:
+        return project_model_path
 
     configured_custom_path = get_configured_model_path()
     if configured_custom_path:
         return CUSTOM_MODEL_ALIAS
 
-    project_model_path = get_project_model_path()
-    if project_model_path:
-        return project_model_path
-
     return "stt_model"
 
 
 def get_supported_models() -> list[str]:
-    supported_models = list(SUPPORTED_MODEL_NAMES)
-    if get_configured_model_path():
-        supported_models.append(CUSTOM_MODEL_ALIAS)
     project_model_path = get_project_model_path()
     if project_model_path:
-        supported_models.append(project_model_path)
-    return supported_models
+        return [CUSTOM_MODEL_ALIAS]
+    return []
 
 
 def _ensure_local_model_path(model_path: str) -> Path:
@@ -280,7 +266,7 @@ def _load_hf_whisper_model(model_ref: str):
         model=model_ref,
         tokenizer=model_ref,
         feature_extractor=model_ref,
-        torch_dtype=torch_dtype,
+        dtype=torch_dtype,
         device=device_index,
     )
 
@@ -319,7 +305,7 @@ def _load_hf_whisper_adapter_model(model_ref: str):
 
     base_model = AutoModelForSpeechSeq2Seq.from_pretrained(
         base_model_name,
-        torch_dtype=torch_dtype,
+        dtype=torch_dtype,
         low_cpu_mem_usage=True,
         use_safetensors=True,
     )
@@ -331,7 +317,7 @@ def _load_hf_whisper_adapter_model(model_ref: str):
         model=adapted_model,
         tokenizer=processor.tokenizer,
         feature_extractor=processor.feature_extractor,
-        torch_dtype=torch_dtype,
+        dtype=torch_dtype,
         device=device_index,
     )
 
