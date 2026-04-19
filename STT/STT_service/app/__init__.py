@@ -1,0 +1,1 @@
+"""STT Service - Application Package"""
