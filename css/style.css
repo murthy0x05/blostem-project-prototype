@@ -620,6 +620,178 @@ body::before {
 }
 
 /* ============================================
+   Content Sections (Preface, Future Plans, etc.)
+   ============================================ */
+.content-section {
+  width: 100%;
+  margin-top: var(--space-xl);
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-lg);
+  padding-bottom: var(--space-md);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.section-icon {
+  width: 22px;
+  height: 22px;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+.section-header h2 {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.section-body {
+  line-height: 1.8;
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+}
+
+.section-body p {
+  margin-bottom: var(--space-md);
+}
+
+.section-body p:last-child {
+  margin-bottom: 0;
+}
+
+.section-lead {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.7;
+}
+
+.section-callout {
+  margin-top: var(--space-md);
+  padding: var(--space-md) var(--space-lg);
+  background: rgba(212, 175, 55, 0.06);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.section-highlight {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--accent-light);
+  font-style: italic;
+  margin-top: var(--space-md);
+}
+
+.section-divider {
+  height: 1px;
+  background: var(--border-subtle);
+  margin: var(--space-xl) 0;
+}
+
+/* Feature list with icons */
+.feature-list {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-md) 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.feature-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  transition: background var(--duration-fast);
+}
+
+.feature-list li:hover {
+  background: rgba(212, 175, 55, 0.04);
+  border-color: rgba(212, 175, 55, 0.1);
+}
+
+.feature-icon {
+  width: 20px;
+  height: 20px;
+  color: var(--accent);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.feature-list li div {
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.feature-list li strong {
+  color: var(--text-primary);
+}
+
+/* Callout block */
+.callout-block {
+  margin-top: var(--space-lg);
+  padding: var(--space-lg);
+  background: rgba(212, 175, 55, 0.04);
+  border: 1px solid rgba(212, 175, 55, 0.12);
+  border-radius: var(--radius-lg);
+}
+
+.callout-block h3 {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--accent-light);
+  margin-bottom: var(--space-sm);
+}
+
+.callout-block p {
+  margin-bottom: var(--space-sm);
+}
+
+.callout-block p:last-child {
+  margin-bottom: 0;
+}
+
+/* Sub-headings */
+.sub-heading {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-top: var(--space-lg);
+  margin-bottom: var(--space-sm);
+}
+
+/* Code inline */
+.section-body code {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 0.85em;
+  padding: 0.15em 0.5em;
+  background: rgba(212, 175, 55, 0.1);
+  border: 1px solid rgba(212, 175, 55, 0.15);
+  border-radius: var(--radius-sm);
+  color: var(--accent-light);
+}
+
+/* ============================================
    Top Nav — Brand
    ============================================ */
 .top-nav {
