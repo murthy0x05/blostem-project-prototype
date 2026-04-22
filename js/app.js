@@ -32,8 +32,6 @@ class App {
       );
     }
 
-
-
     // Load saved language
     const savedLang = localStorage.getItem('blostem_lang');
     if (savedLang) {
@@ -42,15 +40,6 @@ class App {
       if (langObj) this.currentLangName = langObj.name;
     }
     this.ui.setActiveLanguage(this.currentLang);
-
-    // Load saved speed
-    const savedSpeed = localStorage.getItem('blostem_speed');
-    if (savedSpeed) {
-      const slider = document.getElementById('speed-slider');
-      if (slider) slider.value = savedSpeed;
-      const label = document.getElementById('speed-value');
-      if (label) label.textContent = `${savedSpeed}×`;
-    }
 
     this._bindEvents();
     this._bindSpeechCallbacks();
@@ -76,16 +65,6 @@ class App {
 
     // Play button
     this.ui.playBtn.addEventListener('click', () => this._togglePlayback());
-
-
-
-    // Speed slider — save on change
-    const speedSlider = document.getElementById('speed-slider');
-    if (speedSlider) {
-      speedSlider.addEventListener('change', () => {
-        localStorage.setItem('blostem_speed', speedSlider.value);
-      });
-    }
 
     // Keyboard shortcut: Space to toggle recording
     document.addEventListener('keydown', (e) => {
@@ -223,8 +202,7 @@ class App {
     this.ui.setPlayState(true);
 
     try {
-      const speed = this.ui.getSpeed();
-      await this.speech.speakText(text, this.currentLang, speed);
+      await this.speech.speakText(text, this.currentLang, 1.0);
     } catch (error) {
       console.error('TTS error:', error);
       // Don't show error for interruptions

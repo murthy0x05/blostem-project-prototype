@@ -8,82 +8,24 @@
     content="RichPerson FD Advisor — Get smart Fixed Deposit suggestions in your language. Speak in Hindi, Telugu, Tamil, Kannada and more. Powered by AI.">
   <title>RichPerson - FD Advisor</title>
   <link rel="stylesheet" href="css/style.css">
-  <link rel="icon"
-    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏦</text></svg>">
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
 </head>
 
 <body>
 
-  <!-- ============ Settings Toggle ============ -->
-  <button class="settings-toggle" id="settings-toggle" aria-label="Open settings">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-      stroke-linejoin="round">
-      <circle cx="12" cy="12" r="3" />
-      <path
-        d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
-    </svg>
-  </button>
-
-  <!-- ============ Settings Panel ============ -->
-  <div class="settings-overlay" id="settings-overlay"></div>
-  <aside class="settings-panel" id="settings-panel">
-    <button class="settings-close" id="settings-close" aria-label="Close settings">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-        stroke-linejoin="round">
-        <line x1="18" y1="6" x2="6" y2="18" />
-        <line x1="6" y1="6" x2="18" y2="18" />
-      </svg>
-    </button>
-
-    <h2>⚙️ Settings</h2>
-
-    <div class="settings-group">
-      <label for="speed-slider">Voice Speed</label>
-      <input type="range" class="speed-slider" id="speed-slider" min="0.5" max="2" step="0.1" value="1">
-      <div class="speed-value" id="speed-value">1×</div>
-    </div>
-  </aside>
+  <!-- ============ Top Nav Brand ============ -->
+  <nav class="top-nav">
+    <a href="/" class="brand-name">
+      <img src="assets/logo.svg" alt="RichPerson" class="brand-logo">
+      RichPerson
+    </a>
+    <a href="https://murthy0x05.me/" target="_blank" rel="noopener" class="dev-link">Wanna know who developed this?</a>
+  </nav>
 
   <!-- ============ Main App ============ -->
   <div class="app-container">
 
-    <!-- Header -->
-    <header class="app-header">
-      <div class="app-logo">
-        <div class="app-logo-icon">🏦</div>
-      </div>
-      <h1 class="app-title">RichPerson FD Advisor</h1>
-      <p class="app-subtitle">
-        Ask about <span>Fixed Deposits</span> in your language — get smart, AI-powered suggestions spoken back to you.
-      </p>
-      <div class="browser-notice">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-          stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="10" />
-          <line x1="12" y1="16" x2="12" y2="12" />
-          <line x1="12" y1="8" x2="12.01" y2="8" />
-        </svg>
-        <span>Works best in Chrome or Edge. Microphone access required.</span>
-      </div>
-    </header>
-
-
-
-    <!-- Language Selector -->
-    <nav class="language-bar" aria-label="Select your language">
-      <label>Language:</label>
-      <button class="lang-btn active" data-lang="hi-IN">हिन्दी</button>
-      <button class="lang-btn" data-lang="en-IN">English</button>
-      <button class="lang-btn" data-lang="te-IN">తెలుగు</button>
-      <button class="lang-btn" data-lang="ta-IN">தமிழ்</button>
-      <button class="lang-btn" data-lang="kn-IN">ಕನ್ನಡ</button>
-      <button class="lang-btn" data-lang="ml-IN">മലയാളം</button>
-      <button class="lang-btn" data-lang="bn-IN">বাংলা</button>
-      <button class="lang-btn" data-lang="mr-IN">मराठी</button>
-      <button class="lang-btn" data-lang="gu-IN">ગુજરાતી</button>
-    </nav>
-
-    <!-- Voice Interface -->
+    <!-- Voice Interface — Mic First -->
     <section class="voice-section" aria-label="Voice input">
       <div class="mic-container">
         <div class="mic-ring"></div>
@@ -100,7 +42,8 @@
         </button>
       </div>
 
-      <div class="mic-label" id="mic-label">Tap the mic and ask about Fixed Deposits</div>
+      <!-- Dynamic Status Text -->
+      <div class="status-text" id="status-text">Ask <span class="brand-highlight">RichPerson</span> about Fixed Deposits</div>
 
       <!-- Waveform Visualizer -->
       <div class="waveform" id="waveform">
@@ -113,6 +56,20 @@
         <div class="wave-bar"></div>
       </div>
     </section>
+
+    <!-- Language Selector -->
+    <nav class="language-bar" aria-label="Select your language">
+      <label>Language:</label>
+      <button class="lang-btn active" data-lang="hi-IN">हिन्दी</button>
+      <button class="lang-btn" data-lang="en-IN">English</button>
+      <button class="lang-btn" data-lang="te-IN">తెలుగు</button>
+      <button class="lang-btn" data-lang="ta-IN">தமிழ்</button>
+      <button class="lang-btn" data-lang="kn-IN">ಕನ್ನಡ</button>
+      <button class="lang-btn" data-lang="ml-IN">മലയാളം</button>
+      <button class="lang-btn" data-lang="bn-IN">বাংলা</button>
+      <button class="lang-btn" data-lang="mr-IN">मराठी</button>
+      <button class="lang-btn" data-lang="gu-IN">ગુજરાતી</button>
+    </nav>
 
     <!-- Transcript Card -->
     <div class="card transcript-card" id="transcript-card">
@@ -165,24 +122,7 @@
       <div class="history-list" id="history-list"></div>
     </section>
 
-    <!-- Info Cards -->
-    <div class="info-cards">
-      <div class="info-card">
-        <div class="info-icon">💰</div>
-        <h3>Tax Saver FD</h3>
-        <p>Lock-in of 5 years with tax deduction up to ₹1.5 lakh under Section 80C. No premature withdrawal allowed.</p>
-      </div>
-      <div class="info-card">
-        <div class="info-icon">👴</div>
-        <h3>Senior Citizen Rates</h3>
-        <p>Senior citizens (60+) get 0.25%–0.75% higher interest rates across most Indian banks.</p>
-      </div>
-      <div class="info-card">
-        <div class="info-icon">📊</div>
-        <h3>Cumulative vs Regular</h3>
-        <p>Cumulative FDs compound interest and pay at maturity. Non-cumulative pays interest monthly/quarterly.</p>
-      </div>
-    </div>
+
 
     <!-- Footer -->
     <footer class="app-footer">

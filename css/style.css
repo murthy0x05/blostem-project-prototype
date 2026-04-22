@@ -133,10 +133,11 @@ body::before {
   z-index: 1;
   max-width: 900px;
   margin: 0 auto;
-  padding: var(--space-lg) var(--space-lg) var(--space-3xl);
+  padding: 60px var(--space-xl) var(--space-xl);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 /* ============================================
@@ -156,15 +157,19 @@ body::before {
 }
 
 .app-logo-icon {
-  width: 48px;
-  height: 48px;
-  background: var(--accent-gradient);
-  border-radius: var(--radius-md);
+  width: 56px;
+  height: 56px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.5rem;
-  box-shadow: var(--shadow-glow);
+  box-shadow: 0 0 40px rgba(0, 35, 102, 0.4), 0 0 20px rgba(212, 175, 55, 0.15);
+  border-radius: 22%;
+  overflow: hidden;
+}
+
+.app-logo-icon img {
+  width: 100%;
+  height: 100%;
 }
 
 .app-title {
@@ -222,6 +227,7 @@ body::before {
   gap: var(--space-sm);
   padding: var(--space-md) 0;
   flex-wrap: wrap;
+  width: 100%;
 }
 
 .language-bar label {
@@ -267,13 +273,14 @@ body::before {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: var(--space-2xl) 0;
+  padding: var(--space-md) 0 var(--space-sm);
+  width: 100%;
 }
 
 .mic-container {
   position: relative;
-  width: 160px;
-  height: 160px;
+  width: 120px;
+  height: 120px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -292,8 +299,8 @@ body::before {
 .mic-btn {
   position: relative;
   z-index: 2;
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
   border: none;
   background: linear-gradient(145deg, #1a1d30, #12142a);
@@ -366,21 +373,34 @@ body::before {
   }
 }
 
-.mic-label {
-  margin-top: var(--space-lg);
-  font-size: 0.9rem;
-  color: var(--text-muted);
+/* ---------- Status Text ---------- */
+.status-text {
+  margin-top: var(--space-sm);
+  font-family: var(--font-display);
+  font-size: 1.1rem;
   font-weight: 500;
+  color: var(--text-secondary);
+  text-align: center;
   transition: all var(--duration-normal) var(--ease-out);
-  min-height: 1.5em;
+  min-height: 1.8em;
+  letter-spacing: -0.01em;
 }
 
-.mic-label.recording-label {
+.status-text .brand-highlight {
+  color: var(--accent-light);
+  font-weight: 700;
+}
+
+.status-text.recording {
   color: var(--recording);
 }
 
-.mic-label.processing-label {
+.status-text.processing {
   color: var(--accent);
+}
+
+.status-text.speaking {
+  color: var(--success);
 }
 
 /* ============================================
@@ -433,12 +453,12 @@ body::before {
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-lg);
-  padding: var(--space-lg);
+  padding: var(--space-md);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   transition: all var(--duration-normal) var(--ease-out);
   width: 100%;
-  margin-bottom: var(--space-md);
+  margin-bottom: var(--space-sm);
   animation: cardFadeIn 0.5s var(--ease-out) both;
 }
 
@@ -600,182 +620,54 @@ body::before {
 }
 
 /* ============================================
-   Settings Panel
+   Top Nav — Brand
    ============================================ */
-.settings-toggle {
-  position: fixed;
-  top: var(--space-lg);
-  right: var(--space-lg);
-  z-index: 100;
-  width: 44px;
-  height: 44px;
-  border-radius: var(--radius-md);
-  border: 1px solid var(--border-subtle);
-  background: var(--bg-card);
-  backdrop-filter: blur(12px);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--text-secondary);
-  transition: all var(--duration-normal) var(--ease-out);
-}
-
-.settings-toggle:hover {
-  border-color: var(--border-accent);
-  color: var(--accent);
-}
-
-.settings-toggle svg {
-  width: 20px;
-  height: 20px;
-}
-
-.settings-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.6);
-  z-index: 200;
-  opacity: 0;
-  visibility: hidden;
-  transition: all var(--duration-normal) var(--ease-out);
-}
-
-.settings-overlay.open {
-  opacity: 1;
-  visibility: visible;
-}
-
-.settings-panel {
+.top-nav {
   position: fixed;
   top: 0;
+  left: 0;
   right: 0;
-  bottom: 0;
-  width: 380px;
-  max-width: 90vw;
-  background: var(--bg-secondary);
-  border-left: 1px solid var(--border-subtle);
-  z-index: 201;
-  transform: translateX(100%);
-  transition: transform var(--duration-slow) var(--ease-out);
-  overflow-y: auto;
-  padding: var(--space-xl);
+  z-index: 100;
+  padding: var(--space-md) var(--space-xl);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--bg-primary);
+  border-bottom: 1px solid var(--border-subtle);
 }
 
-.settings-panel.open {
-  transform: translateX(0);
-}
-
-.settings-panel h2 {
+.brand-name {
   font-family: var(--font-display);
-  font-size: 1.3rem;
+  font-size: 1.15rem;
   font-weight: 700;
-  margin-bottom: var(--space-xl);
+  color: var(--accent-light);
+  text-decoration: none;
   display: flex;
   align-items: center;
   gap: var(--space-sm);
+  transition: color var(--duration-fast);
 }
 
-.settings-group {
-  margin-bottom: var(--space-xl);
+.brand-logo {
+  width: 28px;
+  height: 28px;
+  border-radius: 22%;
+  overflow: hidden;
 }
 
-.settings-group label {
-  display: block;
-  font-size: 0.8rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--text-muted);
-  margin-bottom: var(--space-sm);
-}
-
-.settings-group input[type="text"],
-.settings-group input[type="password"],
-.settings-group select {
-  width: 100%;
-  padding: 0.7rem 1rem;
-  background: var(--bg-glass);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-md);
-  color: var(--text-primary);
-  font-size: 0.9rem;
-  font-family: var(--font-primary);
-  outline: none;
-  transition: border-color var(--duration-fast);
-}
-
-.settings-group input:focus,
-.settings-group select:focus {
-  border-color: var(--accent);
-}
-
-.settings-group .hint {
-  font-size: 0.75rem;
-  color: var(--text-muted);
-  margin-top: var(--space-xs);
-  line-height: 1.5;
-}
-
-.settings-group .hint a {
+.brand-name:hover {
   color: var(--accent);
+}
+
+.dev-link {
+  font-size: 0.8rem;
+  color: var(--text-muted);
   text-decoration: none;
+  transition: color var(--duration-fast);
 }
 
-.settings-group .hint a:hover {
-  text-decoration: underline;
-}
-
-.settings-close {
-  position: absolute;
-  top: var(--space-lg);
-  right: var(--space-lg);
-  width: 36px;
-  height: 36px;
-  border: none;
-  background: var(--bg-glass);
-  border-radius: var(--radius-sm);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--text-secondary);
-  transition: all var(--duration-fast);
-}
-
-.settings-close:hover {
-  background: rgba(239, 68, 68, 0.15);
-  color: var(--error);
-}
-
-/* Speed slider */
-.speed-slider {
-  width: 100%;
-  -webkit-appearance: none;
-  appearance: none;
-  height: 4px;
-  background: var(--border-subtle);
-  border-radius: var(--radius-full);
-  outline: none;
-  margin-top: var(--space-sm);
-}
-
-.speed-slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 18px;
-  height: 18px;
-  background: var(--accent);
-  border-radius: 50%;
-  cursor: pointer;
-  box-shadow: 0 0 10px var(--accent-glow);
-}
-
-.speed-value {
-  font-size: 0.8rem;
-  color: var(--accent);
-  font-weight: 600;
-  margin-top: var(--space-xs);
+.dev-link:hover {
+  color: var(--accent-light);
 }
 
 /* ============================================

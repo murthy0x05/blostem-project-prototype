@@ -6,7 +6,7 @@ class UI {
   constructor() {
     // Cache DOM refs
     this.micBtn = document.getElementById('mic-btn');
-    this.micLabel = document.getElementById('mic-label');
+    this.statusText = document.getElementById('status-text');
     this.waveform = document.getElementById('waveform');
     this.transcriptBody = document.getElementById('transcript-body');
     this.responseBody = document.getElementById('response-body');
@@ -15,61 +15,12 @@ class UI {
     this.historyList = document.getElementById('history-list');
     this.historySection = document.getElementById('history-section');
 
-    // Settings
-    this.settingsToggle = document.getElementById('settings-toggle');
-    this.settingsOverlay = document.getElementById('settings-overlay');
-    this.settingsPanel = document.getElementById('settings-panel');
-    this.settingsClose = document.getElementById('settings-close');
-    this.speedSlider = document.getElementById('speed-slider');
-    this.speedValue = document.getElementById('speed-value');
-
     // Toast container
     this.toastContainer = document.getElementById('toast-container');
 
     // Lang buttons
     this.langButtons = document.querySelectorAll('.lang-btn');
-
-    // Bind settings panel
-    this._initSettingsPanel();
-    this._initSpeedSlider();
   }
-
-  /* ---------- Settings Panel ---------- */
-  _initSettingsPanel() {
-    this.settingsToggle.addEventListener('click', () => this.openSettings());
-    this.settingsOverlay.addEventListener('click', () => this.closeSettings());
-    this.settingsClose.addEventListener('click', () => this.closeSettings());
-
-    // Close on Escape
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') this.closeSettings();
-    });
-  }
-
-  openSettings() {
-    this.settingsPanel.classList.add('open');
-    this.settingsOverlay.classList.add('open');
-  }
-
-  closeSettings() {
-    this.settingsPanel.classList.remove('open');
-    this.settingsOverlay.classList.remove('open');
-  }
-
-  /* ---------- Speed Slider ---------- */
-  _initSpeedSlider() {
-    if (this.speedSlider && this.speedValue) {
-      this.speedSlider.addEventListener('input', () => {
-        this.speedValue.textContent = `${this.speedSlider.value}×`;
-      });
-    }
-  }
-
-  getSpeed() {
-    return this.speedSlider ? parseFloat(this.speedSlider.value) : 1.0;
-  }
-
-
 
   /* ---------- Language Buttons ---------- */
   setActiveLanguage(langCode) {
@@ -82,27 +33,27 @@ class UI {
   setMicState(state) {
     // state: 'idle' | 'recording' | 'processing' | 'speaking'
     this.micBtn.classList.remove('recording');
-    this.micLabel.classList.remove('recording-label', 'processing-label');
+    this.statusText.classList.remove('recording', 'processing', 'speaking');
 
     switch (state) {
       case 'recording':
         this.micBtn.classList.add('recording');
-        this.micLabel.textContent = 'Listening... Tap to stop';
-        this.micLabel.classList.add('recording-label');
+        this.statusText.innerHTML = '<span class="brand-highlight">RichPerson</span> is listening...';
+        this.statusText.classList.add('recording');
         this.waveform.classList.add('active');
         break;
       case 'processing':
-        this.micLabel.textContent = 'Analyzing your query...';
-        this.micLabel.classList.add('processing-label');
+        this.statusText.innerHTML = '<span class="brand-highlight">RichPerson</span> is thinking...';
+        this.statusText.classList.add('processing');
         this.waveform.classList.remove('active');
         break;
       case 'speaking':
-        this.micLabel.textContent = 'Speaking response...';
-        this.micLabel.classList.add('processing-label');
+        this.statusText.innerHTML = '<span class="brand-highlight">RichPerson</span> is speaking...';
+        this.statusText.classList.add('speaking');
         this.waveform.classList.remove('active');
         break;
       default: // idle
-        this.micLabel.textContent = 'Tap the mic and ask about Fixed Deposits';
+        this.statusText.innerHTML = 'Ask <span class="brand-highlight">RichPerson</span> about Fixed Deposits';
         this.waveform.classList.remove('active');
         break;
     }
