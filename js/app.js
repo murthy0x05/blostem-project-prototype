@@ -1,5 +1,5 @@
 /* ============================================
-   🏦 BloStem FD Advisor — Main App
+   🏦 RichPerson FD Advisor — Main App
    ============================================ */
 
 import SpeechModule from './speech.js';
@@ -32,15 +32,7 @@ class App {
       );
     }
 
-    // Load saved API key
-    const savedKey = localStorage.getItem('blostem_gemini_key');
-    if (savedKey) {
-      this.gemini.setApiKey(savedKey);
-      this.ui.setApiKey(savedKey);
-      this.ui.showApiKeyNotice(false);
-    } else {
-      this.ui.showApiKeyNotice(true);
-    }
+
 
     // Load saved language
     const savedLang = localStorage.getItem('blostem_lang');
@@ -85,13 +77,7 @@ class App {
     // Play button
     this.ui.playBtn.addEventListener('click', () => this._togglePlayback());
 
-    // API key input — save on change
-    this.ui.apiKeyInput.addEventListener('input', () => {
-      const key = this.ui.getApiKey();
-      this.gemini.setApiKey(key);
-      localStorage.setItem('blostem_gemini_key', key);
-      this.ui.showApiKeyNotice(!key);
-    });
+
 
     // Speed slider — save on change
     const speedSlider = document.getElementById('speed-slider');
@@ -179,12 +165,6 @@ class App {
   }
 
   _startRecording() {
-    if (!this.gemini.hasApiKey()) {
-      this.ui.showToast('Please set your Gemini API key first.', 'error');
-      this.ui.openSettings();
-      return;
-    }
-
     this.state = 'recording';
     this.ui.setMicState('recording');
     this.ui.setTranscript('', false);

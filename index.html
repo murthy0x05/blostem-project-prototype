@@ -1,19 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="BloStem FD Advisor — Get smart Fixed Deposit suggestions in your language. Speak in Hindi, Telugu, Tamil, Kannada and more. Powered by AI.">
-  <title>BloStem FD Advisor — Voice-Powered Fixed Deposit Suggestions</title>
+  <meta name="description"
+    content="RichPerson FD Advisor — Get smart Fixed Deposit suggestions in your language. Speak in Hindi, Telugu, Tamil, Kannada and more. Powered by AI.">
+  <title>RichPerson - FD Advisor</title>
   <link rel="stylesheet" href="css/style.css">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏦</text></svg>">
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏦</text></svg>">
 </head>
+
 <body>
 
   <!-- ============ Settings Toggle ============ -->
   <button class="settings-toggle" id="settings-toggle" aria-label="Open settings">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+      stroke-linejoin="round">
+      <circle cx="12" cy="12" r="3" />
+      <path
+        d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
     </svg>
   </button>
 
@@ -21,21 +28,14 @@
   <div class="settings-overlay" id="settings-overlay"></div>
   <aside class="settings-panel" id="settings-panel">
     <button class="settings-close" id="settings-close" aria-label="Close settings">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+        stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18" />
+        <line x1="6" y1="6" x2="18" y2="18" />
       </svg>
     </button>
 
     <h2>⚙️ Settings</h2>
-
-    <div class="settings-group">
-      <label for="api-key-input">Gemini API Key</label>
-      <input type="password" id="api-key-input" placeholder="Paste your API key here..." autocomplete="off">
-      <p class="hint">
-        Get a free key from
-        <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">Google AI Studio →</a>
-      </p>
-    </div>
 
     <div class="settings-group">
       <label for="speed-slider">Voice Speed</label>
@@ -52,23 +52,22 @@
       <div class="app-logo">
         <div class="app-logo-icon">🏦</div>
       </div>
-      <h1 class="app-title">BloStem FD Advisor</h1>
+      <h1 class="app-title">RichPerson FD Advisor</h1>
       <p class="app-subtitle">
         Ask about <span>Fixed Deposits</span> in your language — get smart, AI-powered suggestions spoken back to you.
       </p>
       <div class="browser-notice">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10" />
+          <line x1="12" y1="16" x2="12" y2="12" />
+          <line x1="12" y1="8" x2="12.01" y2="8" />
         </svg>
         <span>Works best in Chrome or Edge. Microphone access required.</span>
       </div>
     </header>
 
-    <!-- API Key Notice -->
-    <div class="api-key-notice" id="api-key-notice">
-      <span class="notice-icon">🔑</span>
-      <span>Click here to set your Gemini API key to get started</span>
-    </div>
+
 
     <!-- Language Selector -->
     <nav class="language-bar" aria-label="Select your language">
@@ -91,11 +90,12 @@
         <div class="mic-ring"></div>
         <div class="mic-ring"></div>
         <button class="mic-btn" id="mic-btn" aria-label="Start or stop voice recording">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
-            <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
-            <line x1="12" y1="19" x2="12" y2="23"/>
-            <line x1="8" y1="23" x2="16" y2="23"/>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" />
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+            <line x1="12" y1="19" x2="12" y2="23" />
+            <line x1="8" y1="23" x2="16" y2="23" />
           </svg>
         </button>
       </div>
@@ -118,9 +118,10 @@
     <div class="card transcript-card" id="transcript-card">
       <div class="card-header">
         <div class="card-title">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
-            <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" />
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
           </svg>
           Your Question
         </div>
@@ -132,16 +133,18 @@
     <div class="card response-card" id="response-card">
       <div class="card-header">
         <div class="card-title">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="10"/>
-            <line x1="12" y1="16" x2="12" y2="12"/>
-            <line x1="12" y1="8" x2="12.01" y2="8"/>
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10" />
+            <line x1="12" y1="16" x2="12" y2="12" />
+            <line x1="12" y1="8" x2="12.01" y2="8" />
           </svg>
           FD Suggestion
         </div>
         <button class="play-btn" id="play-btn" disabled>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <polygon points="5 3 19 12 5 21 5 3"/>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <polygon points="5 3 19 12 5 21 5 3" />
           </svg>
           Listen
         </button>
@@ -152,8 +155,10 @@
     <!-- Conversation History -->
     <section class="history-section hidden" id="history-section">
       <div class="history-title">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="1 4 1 10 7 10" />
+          <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10" />
         </svg>
         Conversation History
       </div>
@@ -181,7 +186,7 @@
 
     <!-- Footer -->
     <footer class="app-footer">
-      <p>BloStem FD Advisor • Powered by Gemini AI • Not financial advice — verify rates with your bank</p>
+      <p>RichPerson FD Advisor • Powered by Gemini AI • Not financial advice — verify rates with your bank</p>
     </footer>
   </div>
 
@@ -191,4 +196,5 @@
   <!-- App Script -->
   <script type="module" src="js/app.js"></script>
 </body>
+
 </html>

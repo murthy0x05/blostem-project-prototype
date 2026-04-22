@@ -20,10 +20,8 @@ class UI {
     this.settingsOverlay = document.getElementById('settings-overlay');
     this.settingsPanel = document.getElementById('settings-panel');
     this.settingsClose = document.getElementById('settings-close');
-    this.apiKeyInput = document.getElementById('api-key-input');
     this.speedSlider = document.getElementById('speed-slider');
     this.speedValue = document.getElementById('speed-value');
-    this.apiKeyNotice = document.getElementById('api-key-notice');
 
     // Toast container
     this.toastContainer = document.getElementById('toast-container');
@@ -46,17 +44,11 @@ class UI {
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') this.closeSettings();
     });
-
-    // API key notice click
-    if (this.apiKeyNotice) {
-      this.apiKeyNotice.addEventListener('click', () => this.openSettings());
-    }
   }
 
   openSettings() {
     this.settingsPanel.classList.add('open');
     this.settingsOverlay.classList.add('open');
-    this.apiKeyInput.focus();
   }
 
   closeSettings() {
@@ -77,20 +69,7 @@ class UI {
     return this.speedSlider ? parseFloat(this.speedSlider.value) : 1.0;
   }
 
-  /* ---------- API Key ---------- */
-  getApiKey() {
-    return this.apiKeyInput ? this.apiKeyInput.value.trim() : '';
-  }
 
-  setApiKey(key) {
-    if (this.apiKeyInput) this.apiKeyInput.value = key;
-  }
-
-  showApiKeyNotice(show) {
-    if (this.apiKeyNotice) {
-      this.apiKeyNotice.classList.toggle('hidden', !show);
-    }
-  }
 
   /* ---------- Language Buttons ---------- */
   setActiveLanguage(langCode) {
