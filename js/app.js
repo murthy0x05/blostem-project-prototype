@@ -41,8 +41,31 @@ class App {
     }
     this.ui.setActiveLanguage(this.currentLang);
 
+    // Load saved theme
+    const savedTheme = localStorage.getItem('blostem_theme');
+    if (savedTheme === 'light') {
+      document.body.classList.add('light-theme');
+      this._updateThemeIcon('light');
+    } else {
+      this._updateThemeIcon('dark');
+    }
+
     this._bindEvents();
     this._bindSpeechCallbacks();
+  }
+
+  _updateThemeIcon(theme) {
+    const sunIcon = document.querySelector('.sun-icon');
+    const moonIcon = document.querySelector('.moon-icon');
+    if (sunIcon && moonIcon) {
+      if (theme === 'light') {
+        sunIcon.style.display = 'none';
+        moonIcon.style.display = 'block';
+      } else {
+        sunIcon.style.display = 'block';
+        moonIcon.style.display = 'none';
+      }
+    }
   }
 
   _bindEvents() {
@@ -73,6 +96,17 @@ class App {
         this._toggleRecording();
       }
     });
+
+    // Theme toggle
+    const themeToggle = document.getElementById('theme-toggle');
+    if (themeToggle) {
+      themeToggle.addEventListener('click', () => {
+        const isLight = document.body.classList.toggle('light-theme');
+        const theme = isLight ? 'light' : 'dark';
+        localStorage.setItem('blostem_theme', theme);
+        this._updateThemeIcon(theme);
+      });
+    }
   }
 
   _isInputFocused() {

@@ -1,0 +1,11 @@
+{
+  "name": "blostem-project-prototype",
+  "version": "1.0.0",
+  "description": "RichPerson FD Advisor",
+  "scripts": {
+    "dev": "npx serve ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
