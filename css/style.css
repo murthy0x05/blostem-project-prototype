@@ -971,6 +971,19 @@ body::after {
   color: var(--accent-light);
 }
 
+.dev-avatar {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--border-subtle);
+  transition: border-color var(--duration-fast);
+}
+
+.dev-link:hover .dev-avatar {
+  border-color: var(--accent-light);
+}
+
 .nav-actions {
   display: flex;
   align-items: center;
@@ -1177,8 +1190,8 @@ body::after {
     display: none;
   }
 
-  .dev-text-short {
-    display: inline;
+  .dev-avatar {
+    display: block !important;
   }
 
   .app-title {
