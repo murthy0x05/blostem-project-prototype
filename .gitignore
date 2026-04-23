@@ -6,8 +6,8 @@ node_modules/
 .env.local
 .env.*.local
 
-# Config with secrets
-js/config.js
+# Config (anon key is public — safe to commit)
+# js/config.js
 
 # OS files
 .DS_Store
