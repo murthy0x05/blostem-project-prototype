@@ -109,12 +109,29 @@ Deno.serve(async (req: Request) => {
       });
     }
 
-    let geminiResponse = await fetchFromGemini(PRIMARY_MODEL);
+    async function fetchFromGeminiWithRetry(model: string, retries = 2) {
+      for (let i = 0; i <= retries; i++) {
+        const response = await fetchFromGemini(model);
+        if (response.ok || response.status !== 429) {
+          return response;
+        }
+        if (i < retries) {
+          const delay = Math.pow(2, i) * 1000;
+          console.log(`Rate limited on ${model}. Retrying in ${delay}ms...`);
+          await new Promise(res => setTimeout(res, delay));
+        } else {
+          return response;
+        }
+      }
+      return await fetchFromGemini(model);
+    }
 
-    // If any error occurs (404, 503, etc), try fallback
+    let geminiResponse = await fetchFromGeminiWithRetry(PRIMARY_MODEL);
+
+    // If any error occurs (404, 503, 429 after retries), try fallback
     if (!geminiResponse.ok) {
       console.log(`Model ${PRIMARY_MODEL} failed with ${geminiResponse.status}, falling back to ${FALLBACK_MODEL}`);
-      geminiResponse = await fetchFromGemini(FALLBACK_MODEL);
+      geminiResponse = await fetchFromGeminiWithRetry(FALLBACK_MODEL);
     }
 
     if (!geminiResponse.ok) {
