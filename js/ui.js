@@ -36,13 +36,7 @@ class UI {
   initCollapsibles() {
     const collapsibles = document.querySelectorAll('.section-header.collapsible');
     collapsibles.forEach(header => {
-      // Set initial collapsed state
-      header.classList.add('collapsed');
       const content = header.nextElementSibling;
-      if (content && content.classList.contains('section-body')) {
-        content.classList.add('collapsed');
-      }
-
       header.addEventListener('click', () => {
         header.classList.toggle('collapsed');
         if (content && content.classList.contains('section-body')) {
