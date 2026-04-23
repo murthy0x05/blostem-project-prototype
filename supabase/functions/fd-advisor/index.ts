@@ -97,8 +97,8 @@ Deno.serve(async (req: Request) => {
       ],
     };
 
-    const PRIMARY_MODEL = "gemini-1.5-flash-latest";
-    const FALLBACK_MODEL = "gemini-pro";
+    const PRIMARY_MODEL = "gemini-2.5-flash";
+    const FALLBACK_MODEL = "gemini-2.5-pro";
 
     async function fetchFromGemini(model: string) {
       const url = `${GEMINI_API_BASE}/${model}:generateContent?key=${GEMINI_API_KEY}`;
