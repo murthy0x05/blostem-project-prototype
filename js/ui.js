@@ -20,12 +20,35 @@ class UI {
 
     // Lang buttons
     this.langButtons = document.querySelectorAll('.lang-btn');
+
+    // Initialize interactive content
+    this.initCollapsibles();
   }
 
   /* ---------- Language Buttons ---------- */
   setActiveLanguage(langCode) {
     this.langButtons.forEach(btn => {
       btn.classList.toggle('active', btn.dataset.lang === langCode);
+    });
+  }
+
+  /* ---------- Collapsible Sections ---------- */
+  initCollapsibles() {
+    const collapsibles = document.querySelectorAll('.section-header.collapsible');
+    collapsibles.forEach(header => {
+      // Set initial collapsed state
+      header.classList.add('collapsed');
+      const content = header.nextElementSibling;
+      if (content && content.classList.contains('section-body')) {
+        content.classList.add('collapsed');
+      }
+
+      header.addEventListener('click', () => {
+        header.classList.toggle('collapsed');
+        if (content && content.classList.contains('section-body')) {
+          content.classList.toggle('collapsed');
+        }
+      });
     });
   }
 
