@@ -97,8 +97,8 @@ Deno.serve(async (req: Request) => {
       ],
     };
 
-    const PRIMARY_MODEL = "gemini-2.5-flash";
-    const FALLBACK_MODEL = "gemini-1.5-flash";
+    const PRIMARY_MODEL = "gemini-1.5-flash-latest";
+    const FALLBACK_MODEL = "gemini-pro";
 
     async function fetchFromGemini(model: string) {
       const url = `${GEMINI_API_BASE}/${model}:generateContent?key=${GEMINI_API_KEY}`;
@@ -111,9 +111,9 @@ Deno.serve(async (req: Request) => {
 
     let geminiResponse = await fetchFromGemini(PRIMARY_MODEL);
 
-    // If 503 High Demand, try fallback
-    if (!geminiResponse.ok && geminiResponse.status === 503) {
-      console.log(`Model ${PRIMARY_MODEL} overloaded, falling back to ${FALLBACK_MODEL}`);
+    // If any error occurs (404, 503, etc), try fallback
+    if (!geminiResponse.ok) {
+      console.log(`Model ${PRIMARY_MODEL} failed with ${geminiResponse.status}, falling back to ${FALLBACK_MODEL}`);
       geminiResponse = await fetchFromGemini(FALLBACK_MODEL);
     }
 

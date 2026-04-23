@@ -174,6 +174,11 @@ class SpeechModule {
       const voice = this._getVoice(langCode);
       if (voice) {
         utterance.voice = voice;
+      } else if (!langCode.startsWith('en')) {
+        // Voice not found for non-English language
+        console.warn(`No voice found for language ${langCode}`);
+        reject(new Error(`No voice installed for ${langCode}. Please install the language pack in your OS settings.`));
+        return;
       }
 
       utterance.onstart = () => {
