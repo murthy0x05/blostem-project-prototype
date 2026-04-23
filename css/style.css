@@ -1166,7 +1166,19 @@ body::after {
    ============================================ */
 @media (max-width: 640px) {
   .app-container {
-    padding: var(--space-md) var(--space-md) var(--space-2xl);
+    padding: 80px var(--space-md) var(--space-2xl);
+  }
+
+  .top-nav {
+    padding: var(--space-sm) var(--space-md);
+  }
+
+  .dev-text-full {
+    display: none;
+  }
+
+  .dev-text-short {
+    display: inline;
   }
 
   .app-title {
