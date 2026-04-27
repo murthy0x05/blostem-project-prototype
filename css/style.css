@@ -548,7 +548,8 @@ body::after {
   transition: all var(--duration-normal) var(--ease-out);
   width: 100%;
   margin-bottom: var(--space-sm);
-  animation: cardFadeIn 0.5s var(--ease-out) both;
+  animation: cardFadeIn 0.5s var(--ease-out);
+  transform: translateZ(0);
 }
 
 @keyframes cardFadeIn {
@@ -678,7 +679,8 @@ body::after {
   border: 1px solid var(--bg-glass-border);
   border-radius: var(--radius-md);
   padding: var(--space-md);
-  animation: cardFadeIn 0.4s var(--ease-out) both;
+  animation: cardFadeIn 0.4s var(--ease-out);
+  transform: translateZ(0);
 }
 
 .history-item .history-q {
@@ -720,6 +722,7 @@ body::after {
   padding: var(--space-md) var(--space-lg);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
+  transform: translateZ(0);
 }
 
 .section-header {
